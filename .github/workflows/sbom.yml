@@ -1,0 +1,22 @@
+name: SBOM
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+      - name: Generate SBOM (SPDX JSON)
+        uses: anchore/sbom-action@0b82b0b1a22399a1c542d4d656f70cd903571b5c
+        with:
+          format: spdx-json
+          artifact-name: sbom.spdx.json
+          upload-release-assets: false

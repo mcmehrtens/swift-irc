@@ -1,0 +1,25 @@
+name: License Compliance
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  actions: read
+
+jobs:
+  scanoss-license-check:
+    name: SCANOSS License Scan
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+    - name: Run SCANOSS Code Scan (Copyleft Policy)
+      uses: scanoss/code-scan-action@7da0dbb413e636a18f262a4d930f72fab12cc80d
+      with:
+        policies: copyleft
