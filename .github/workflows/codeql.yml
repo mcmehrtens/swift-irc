@@ -49,7 +49,7 @@ jobs:
     - name: Run manual build steps
       if: matrix.build-mode == 'manual' && matrix.language == 'swift'
       shell: bash
-      run: swift build --package-path .
+      run: swift build --package-path ${{ github.workspace }}
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@cdefb33c0f6224e58673d9004f47f7cb3e328b89
